@@ -1,79 +1,163 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat-400.woff2") format("woff2");
+  font-style: normal;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
 }
-a:hover {
-  color: #535bf2;
+
+:root {
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
+  background-color: #404a65;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  min-height: 100vh;
+}
+
+.coin-app {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
   text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.coin-app h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 5rem;
+  text-shadow: 2px 2px 0 #35383f;
+  -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-color: #35383f;
+}
+
+.subtitle {
+  margin: 0 0 2rem;
+  color: #9ba0af;
+  font-size: 2rem;
+  -webkit-text-stroke-width: 1px;
+}
+
+.coin-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.coin-button:disabled {
+  cursor: not-allowed;
+}
+
+.coin-button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2.5rem;
+  width: 4.5rem;
+  height: 0.45rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #373c47;
+  opacity: 0.9;
+}
+
+.coin-button.flipping .coin {
+  animation: coin-flip 700ms ease-in-out;
+}
+
+.coin-button.flipping::after {
+  animation: coin-shadow 700ms ease-in-out;
+}
+
+.coin {
+  display: grid;
+  place-items: center;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 15px solid #fcde75;
+  background: linear-gradient(135deg, #fcb411 45%, #fcbb29 25%, #fcb411 60%);
+}
+
+.coin::before {
+  content: attr(data-symbol);
+  font-size: 6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fee075;
+}
+
+.coin-app button:not(.coin-button) {
+  justify-self: center;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid #2a5e8e;
+  border-radius: 0.5rem;
+  background: #267ec5;
+  cursor: pointer;
+  margin-top: 4rem;
+  color: #ffffff;
+}
+
+.coin-app button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.result {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 4rem 0 0;
+  color: #ffffff;
+}
+
+@keyframes coin-flip {
+  0% {
+    transform: translateY(0) rotateY(0deg);
   }
-  a:hover {
-    color: #747bff;
+  50% {
+    transform: translateY(-1rem) rotateY(540deg);
   }
-  button {
-    background-color: #f9f9f9;
+  100% {
+    transform: translateY(0) rotateY(1080deg);
+  }
+}
+
+@keyframes coin-shadow {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.75);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.9;
   }
 }
