@@ -1,5 +1,30 @@
-# Vue 3 + TypeScript + Vite
+# Flip The Coin
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A small Vue 3 + TypeScript app that flips a coin with animation and displays the result.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Screenshot
+
+![Flip The Coin app screenshot](image-1.png)
+
+## Features
+
+- Flip the coin by clicking the coin or the `FLIP COIN` button.
+- Prevents spam clicks while a flip animation is running.
+- Uses a fixed `700ms` flip duration.
+- Respects reduced motion preference by skipping animation and showing the result immediately.
+- Announces result changes with `aria-live="polite"` for screen readers.
+- Responsive layout for desktop and mobile viewports.
+
+## Tech Stack
+
+- Vue 3
+- Vite
+- TypeScript
+- Vitest (`jsdom`)
+
+## Scripts
+
+- `npm run dev`: Start local development server.
+- `npm run build`: Type-check and build production assets.
+- `npm run preview`: Preview the production build locally.
+- `npm run test`: Run unit tests.
