@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { CoinResult } from '../composables/useCoinFlip'
 
 const HEADS_SYMBOL = '$'
 const TAILS_SYMBOL = 'I'
+const COIN_ARIA_LABEL = 'Flip Coin'
 
 const props = defineProps<{
-  result: 'Heads' | 'Tails' | null
+  result: CoinResult
   isFlipping: boolean
   disabled: boolean
 }>()
@@ -33,7 +35,7 @@ const coinSymbol = computed(() => {
     class="coin-button"
     :class="{ flipping: isFlipping }"
     :disabled="props.disabled"
-    aria-label="Flip Coin"
+    :aria-label="COIN_ARIA_LABEL"
     @click="emit('flip')"
   >
     <span class="coin" :data-symbol="coinSymbol" aria-hidden="true"></span>

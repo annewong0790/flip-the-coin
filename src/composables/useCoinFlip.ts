@@ -1,9 +1,10 @@
 import { onBeforeUnmount, ref, type Ref } from 'vue'
 
-type CoinSide = 'Heads' | 'Tails'
+export type CoinSide = 'Heads' | 'Tails'
+export type CoinResult = CoinSide | null
 
 type UseCoinFlipResult = {
-  result: Ref<CoinSide | null>
+  result: Ref<CoinResult>
   isFlipping: Ref<boolean>
   flipCoin: () => void
 }
@@ -36,7 +37,7 @@ const createBrowserEnvironment = (): CoinFlipEnvironment => {
 
 export const useCoinFlip = (): UseCoinFlipResult => {
   const env = createBrowserEnvironment()
-  const result = ref<CoinSide | null>(null)
+  const result = ref<CoinResult>(null)
   const isFlipping = ref(false)
   let flipAnimationTimeout: number | null = null
 

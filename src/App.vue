@@ -16,6 +16,8 @@ const { result, isFlipping, flipCoin } = useCoinFlip()
       @flip="flipCoin"
     />
     <p class="result" aria-live="polite">{{ result ?? '\u00A0' }}</p>
-    <button type="button" :disabled="isFlipping" @click="flipCoin">FLIP COIN</button>
+    <button type="button" :disabled="isFlipping" @click="flipCoin">
+      FLIP COIN
+    </button>
   </main>
 </template>
